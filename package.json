@@ -1,0 +1,25 @@
+{
+  "name": "todomvc-morearty-reflux",
+  "version": "0.0.0",
+  "description": "Todo example using Morearty + Reflux combo",
+  "main": "index.js",
+  "keywords": [
+    "moreartyjs",
+    "reflux",
+    "react",
+    "todomvc"
+  ],
+  "author": "Nikita Kosolapov",
+  "license": "ISC",
+  "dependencies": {
+    "react": "~0.12",
+    "morearty": "~0.7",
+    "immutable": "~3.2",
+    "reflux": "~0.2",
+    "director": "^1.2.3"
+  },
+  "devDependencies": {
+    "webpack": "~1.4",
+    "jsx-loader": "~0.12"
+  }
+}
