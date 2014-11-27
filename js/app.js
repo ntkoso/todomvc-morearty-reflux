@@ -139,7 +139,7 @@ var Header = React.createClass({
         this.refs.newTodo.getDOMNode().focus(); // focus on show
     },
 
-    onAddTodo: function (event) {
+    handleAdd: function (event) {
         var title = event.target.value;
         if (title) {
             TodoActions.add(title);
@@ -154,7 +154,7 @@ var Header = React.createClass({
                 <Morearty.DOM.input id='new-todo' // requestAnimationFrame-friendly wrapper around input
                     ref='newTodo'
                     placeholder='What needs to be done?'
-                    onKeyDown={ Morearty.Callback.onEnter(this.onAddTodo) } />
+                    onKeyDown={ Morearty.Callback.onEnter(this.handleAdd) } />
             </header>
         );
     }
@@ -165,7 +165,7 @@ var TodoList = React.createClass({
 
     mixins: [Morearty.Mixin],
 
-    onToggleAll: function (event) {
+    handleToggleAll: function (event) {
         TodoActions.toggleAll(event.target.checked);
     },
 
@@ -202,7 +202,7 @@ var TodoList = React.createClass({
               <Morearty.DOM.input id='toggle-all'
                   type='checkbox'
                   checked={ allCompleted }
-                  onChange={ this.onToggleAll } /> :
+                  onChange={ this.handleToggleAll } /> :
               null
           }
                 <ul id='todo-list'>{ items.map(renderTodo).toArray() }</ul>
@@ -247,8 +247,8 @@ var TodoItem = React.createClass({
      Component can work with bindings without firing an action.
      This is the same when you using Morearty without Reflux.
      */
-    handleToggleEditing: function (event) {
-        this.getDefaultBinding().set('editing', event);
+    handleToggleEditing: function (editing) {
+        this.getDefaultBinding().set('editing', editing);
     },
 
     handleEditComplete: function (event) {
@@ -292,7 +292,7 @@ var Footer = React.createClass({
 
     mixins: [Morearty.Mixin],
 
-    onClearCompleted: function () {
+    handleClearCompleted: function () {
         TodoActions.clearCompleted();
     },
 
@@ -321,7 +321,7 @@ var Footer = React.createClass({
                 </ul>
       {
           completedItemsCount ?
-              <button id='clear-completed' onClick={ this.onClearCompleted }>
+              <button id='clear-completed' onClick={ this.handleClearCompleted }>
             { 'Clear completed (' + completedItemsCount + ')' }
               </button> :
               null
