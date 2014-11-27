@@ -80,12 +80,12 @@ var TodoStore = Reflux.createStore({
         this.itemsBinding.delete(itemIndex);
     },
 
-    onToggle: function (id, value) {
+    onToggle: function (id, checked) {
         var itemIndex = this.itemsBinding.get().findIndex(function(item) {
             return item.get('id') === id
         });
         var itemBinding = this.itemsBinding.sub(itemIndex);
-        itemBinding.atomically().set('completed', value).commit();
+        itemBinding.atomically().set('completed', checked).commit();
     },
 
     onToggleAll: function (checked) {
